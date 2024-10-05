@@ -10,11 +10,11 @@
 #include <netinet/in.h>
 
 /*
-socket()
-connect()
-close()
-htons() // from port number - cn
-inet_addr()
+socket() - create an endpoint for communication
+connect() - initiate a connection on a socket
+close() - delete a descriptor
+htons() - convert values between host and network byte order
+inet_addr() -  Internet address manipulation routines
 */
 
 /*
@@ -23,7 +23,7 @@ inet_addr()
 10101100 10101100 - port number in binary
 */
 
-#define PROXY  "127.0.0.1"
+#define PROXY "127.0.0.1"
 #define PROXYPORT 9050
 
 typedef unsigned char int8;
@@ -32,12 +32,13 @@ typedef unsigned int int32;
 
 /*
             +----+----+----+----+----+----+----+----+----+----+....+----+
-            		| VN | CD | DSTPORT |      DSTIP        | USERID   |NULL|
+                | VN | CD | DSTPORT |      DSTIP        | USERID   |NULL|
             +----+----+----+----+----+----+----+----+----+----+....+----+
 # of bytes:	       1    1      2             4           variable     1
 */
 
-struct proxy_request {
+struct proxy_request
+{
   int8 vn;
   int32 cd;
   int16 dstport;
@@ -48,12 +49,13 @@ typedef struct proxy_request Req;
 
 /*
           +----+----+----+----+----+----+----+----+
-          		| VN | CD | DSTPORT  |     DSTIP    |
+              | VN | CD | DSTPORT  |     DSTIP    |
           +----+----+----+----+----+----+----+----+
 # of bytes: 	   1    1      2              4
 */
 
-struct proxy_response {
+struct proxy_response
+{
   int8 vn;
   int8 cd;
   int16 _;
