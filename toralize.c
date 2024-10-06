@@ -39,10 +39,10 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  // chỉ định "family" (họ) của địa chỉ được sử dụng trong giao tiếp mạng
+  // Chỉ định "family" (họ) của địa chỉ được sử dụng trong giao tiếp mạng
   sock.sin_family = AF_INET;
 
-  // số cổng (port) được sử dụng để giao tiếp trên mạng.
+  // Số cổng (port) được sử dụng để giao tiếp trên mạng.
   // htons() để đảm bảo thứ tự byte đúng khi truyền dữ liệu qua mạng
   sock.sin_port = htons(PROXYPORT);
 
@@ -66,6 +66,10 @@ int main(int argc, char *argv[])
     Upon successful completion, a value of 0 is returned.
     Otherwise, a value of -1 is returned and
     the global integer variable errno is set to indicate the error.
+
+  # Prerequisite: Your device must be installed tor
+    127.0.0.1 9050 is the default port value of tor
+    to run toralize
   */
   if (connect(s, (struct sockaddr *)&sock, sizeof(sock)))
   {

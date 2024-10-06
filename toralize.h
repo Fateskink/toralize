@@ -62,3 +62,18 @@ struct proxy_response
   int32 __;
 };
 typedef struct proxy_response Res;
+
+/*
+dstip - destination ip
+dstport - destination port
+
+Req *request(const char *dstip, const int dstport);
+*/
+Req *request(const char*, const int);
+
+/*
+char **argv cho phép chương trình nhận nhiều chuỗi ký tự 
+(các đối số) từ dòng lệnh, 
+mỗi chuỗi được đại diện bởi một con trỏ char *
+*/
+int main(int, char**);
