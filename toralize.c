@@ -67,9 +67,12 @@ int main(int argc, char *argv[])
     Otherwise, a value of -1 is returned and
     the global integer variable errno is set to indicate the error.
 
-  # Prerequisite: Your device must be installed tor
-    127.0.0.1 9050 is the default port value of tor
+  # Prerequisite: Your device must be installed `tor`
     to run toralize
+
+    PROXY and PROXY_PORT which were declare
+    in toralize.h
+    127.0.0.1 9050 is the default port value of tor
   */
   if (connect(s, (struct sockaddr *)&sock, sizeof(sock)))
   {

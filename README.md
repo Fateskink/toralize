@@ -7,3 +7,10 @@ install tor
 ```
 supo apt install tor
 ```
+
+#### Run command
+```
+make
+```
+
+to build program
