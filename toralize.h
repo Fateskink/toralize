@@ -44,7 +44,7 @@ typedef unsigned int int32;
 struct proxy_request
 {
   int8 vn;
-  int32 cd;
+  int8 cd;
   int16 dstport;
   int32 dstip;
   unsigned char userid[8];

@@ -6,11 +6,12 @@ Req *request(const char *dstip, const int dstport)
   Req *req;
 
   req = malloc(reqsize);
-  req->vn = 4; // use `->` instead of `.` cause of req is a pointer
-  req->cd = 1;
+  //  use `->` instead of `.` cause of req is a pointer
+  req->vn = 4; // version number
+  req->cd = 1; // command code
   req->dstport = htons(dstport);
   req->dstip = inet_addr(dstip);
-  strncpy(req->userid, USERNAME, 8);
+  strncpy((char *)req->userid, USERNAME, 8);
 
   return req;
 }
