@@ -128,8 +128,7 @@ int main(int argc, char *argv[])
     return -1;
   }
 
-  printf("Successfully connect through the proxy to ",
-         "%s:%d\n", host, port);
+  printf("Successfully connect through the proxy to %s:%d\n", host, port);
   close(s);
   free(req);
 
