@@ -1,4 +1,5 @@
 # toralize
+[SOCKS](https://www.openssh.com/txt/socks4.protocol)
 
 #### Platform Debian GNU Linix 12 ARM64
 
@@ -13,4 +14,4 @@ supo apt install tor
 make
 ```
 
-to build program
+Run `Makefile` to build program

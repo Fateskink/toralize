@@ -1,12 +1,29 @@
 /* toralizer.c */
 #include "toralize.h"
 
+Req *request(const char *dstip, const int dstport)
+{
+  Req *req;
+
+  req = malloc(reqsize);
+  req->vn = 4; // use `->` instead of `.` cause of req is a pointer
+  req->cd = 1;
+  req->dstport = htons(dstport);
+  req->dstip = inet_addr(dstip);
+  strncpy(req->userid, USERNAME, 8);
+
+  return req;
+}
+
 int main(int argc, char *argv[])
 {
   char *host;
   int port, s;
-
   struct sockaddr_in sock;
+  Req *req;
+  Res *res;
+  char buf[ressize];
+  int success;
 
   if (argc < 3)
   {
@@ -82,7 +99,38 @@ int main(int argc, char *argv[])
   }
 
   printf("Connect to proxy\n");
+
+  req = request(host, port);
+  write(s, req, reqsize);
+  memset(buf, 0, ressize);
+
+  if (read(s, buf, ressize) < 1)
+  {
+    perror("Read buffer error");
+
+    free(req);
+    close(s);
+
+    return -1;
+  }
+
+  res = (Res *)buf;
+  success = (res->cd == 90); // 90: request granted
+
+  if (!success)
+  {
+    fprintf(stderr, "Unable to traverse the proxy, error code: %d\n", res->cd);
+
+    free(req);
+    close(s);
+
+    return -1;
+  }
+
+  printf("Successfully connect through the proxy to ",
+         "%s:%d\n", host, port);
   close(s);
+  free(req);
 
   return 0;
 }

@@ -25,6 +25,10 @@ inet_addr() -  Internet address manipulation routines
 
 #define PROXY "127.0.0.1"
 #define PROXYPORT 9050
+#define USERNAME "toralize"
+
+#define reqsize sizeof(struct proxy_request)
+#define ressize sizeof(struct proxy_response)
 
 typedef unsigned char int8;
 typedef unsigned short int int16;
